@@ -1,0 +1,7 @@
+# Gets the download url for the latest release of a package provided via GitHub Releases
+# Fa il download dalla url dell'ultima release del package .deb rilasciato sul GitHub
+# Usage: ghrelease USER REPO [PATTERN]
+# Uso:   ghrelease home-assistant os-agent "os-agent_.*_x86_64.deb"
+
+ghrelease() {
+	curl -s "https://api.github.com/repos/$1/$2/releases/latest" | grep -o "http.*${3:-deb}"
